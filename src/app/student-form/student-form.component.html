@@ -22,7 +22,8 @@
         [class.is-valid]="lastNameControl?.valid"
         [class.is-invalid]="lastNameControl?.touched && lastNameControl?.invalid"
         >
-        <div *ngIf="lastNameControl?.hasError('required')" class="invalid-feedback" >Debe ingresar el Apellido</div>        
+        <div *ngIf="lastNameControl?.hasError('required')" class="invalid-feedback" >Debe ingresar el Apellido</div>
+        <div *ngIf="nameControl?.hasError('minLength')" class="invalid-feedback" >Debe ingresar mas de 3 caracteres</div>         
     </div>
     <div class="col-md-6">
         <label for="inputBirthDate" class="form-label">Fecha de Nacimiento</label>
@@ -60,6 +61,7 @@
         [class.is-invalid]="adreessControl?.touched && adreessControl?.invalid"
         >
         <div *ngIf="adreessControl?.hasError('required')" class="invalid-feedback" >Debe ingresar la direccion</div>
+        <div *ngIf="nameControl?.hasError('minLength')" class="invalid-feedback" >Debe ingresar mas de 3 caracteres</div> 
     </div>
 
     <div class="col-md-6">
