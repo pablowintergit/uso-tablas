@@ -1,0 +1,12 @@
+Reactive forms:
+1-Crear el componente que contendra al formulario
+2-Importar en AppModule la clase ReactiveFormsModule para Reactive Forms o FormModule para template driven
+3-Crear el modelo del formulario en el codigo del componente (ts) mediante formBuilder.group, esto se almacena
+en una variable userForm:FormGroup (userForm es solo un nombre)
+userForm:FormGroup=this.formBuilder.group({
+    name:this.formBuilder.control(''),
+    lastName:[''] // otra forma
+})
+4-Crear plantilla html
+5-En la etiqueta form agregar atributo [formGroup]="userForm"
+6-Por cada form element (input,select,etc) asignarle el nombre definido en el modelo del formulario (3)
