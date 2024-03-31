@@ -2,6 +2,7 @@ import { JsonPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { minLengthValidator } from '../validators/minLengthValidator.validator';
 
 
 
@@ -15,20 +16,19 @@ export class StudentFormComponent {
 
     constructor(private formBuilder:FormBuilder){
       this.studentForm=this.formBuilder.group({
-        name:this.formBuilder.control(''),
-        lastName:this.formBuilder.control(''),
-        birthDate:this.formBuilder.control(''),
+        name:this.formBuilder.control('',[Validators.required,minLengthValidator]),
+        lastName:this.formBuilder.control('',[Validators.required]),
+        birthDate:this.formBuilder.control('',[Validators.required]),
         email:this.formBuilder.control('',
         [Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}'),
         Validators.required]),
-        adreess:this.formBuilder.control(''),
-        password:this.formBuilder.control(''),
-        repeatPassword:this.formBuilder.control('')
+        adreess:this.formBuilder.control('',[Validators.required]),
+        password:this.formBuilder.control('',[Validators.required]),
+        repeatPassword:this.formBuilder.control('',[Validators.required])
       });
     }
 
     onSubmit():void{
-      //alert(JSON.stringify(this.studentForm.value))
       if (this.studentForm.valid){
         Swal.fire({
           title:"El alumno se guardo con exito",
