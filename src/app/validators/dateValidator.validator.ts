@@ -1,4 +1,5 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from "@angular/forms"
+import moment, { Moment } from "moment";
 
 /*
 📌 Este metodo valida que la fecha ingresada no sea mayor a la actual
@@ -9,21 +10,23 @@ export const dateValidator:ValidatorFn= (control:AbstractControl):ValidationErro
         return null;
     }
     
+    const errors:ValidationErrors={};
 
+    const now= moment();
 
+    const dateToEval = moment(control.value);
 
-    /* let cadena:string=control.value;
-    
-    if (cadena.length===0){
-        return null;
+    // Comparar las fechas
+    if (dateToEval.isAfter(now)) {
+        errors["dateOverflow"]=true;   
     }
-    
-    const regex = /^[A-Za-z]+$/;
-    if (!regex.test(cadena)){
-        return{
-            onlyLetters:true
-        }
-    } */
 
-    return null;
+    let diff:number=now.diff(dateToEval,"years");
+
+    if (diff>4){
+        errors["yearsOverflow"]=true;   
+    }
+
+    return Object.keys(errors).length !== 0 ? errors : null;
+    
 } 
