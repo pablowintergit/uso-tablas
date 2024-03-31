@@ -10,3 +10,7 @@ userForm:FormGroup=this.formBuilder.group({
 4-Crear plantilla html
 5-En la etiqueta form agregar atributo [formGroup]="userForm"
 6-Por cada form element (input,select,etc) asignarle el nombre definido en el modelo del formulario (3)
+7-Para las validaciones necesitamos hacer referencia a los controles dentro del form
+para eso tenemos que crear un getter que devuelva el componente usando userForm.get(nombreControl)
+De esta forma accederemos a las propiedades de este control como valid o invalid o touched
+De ahi podremos mostrar mensajes personalizados del error.

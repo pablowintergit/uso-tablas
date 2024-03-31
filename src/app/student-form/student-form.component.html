@@ -34,7 +34,8 @@
       class="form-control" 
       id="inputEmail"
       formControlName="email"
-      [class.is-valid]=""
+      [class.is-valid]="emailControl?.valid"
+      [class.is-invalid]="emailControl?.touched && emailControl?.invalid"
       >
     </div>
     

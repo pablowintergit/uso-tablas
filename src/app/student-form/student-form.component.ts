@@ -1,6 +1,9 @@
 import { JsonPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
+
+
 
 @Component({
   selector: 'app-student-form',
@@ -25,7 +28,15 @@ export class StudentFormComponent {
     }
 
     onSubmit():void{
-      alert(JSON.stringify(this.studentForm.value))
+      //alert(JSON.stringify(this.studentForm.value))
+      if (this.studentForm.valid){
+        Swal.fire({
+          title:"El alumno se guardo con exito",
+          icon:"success"
+        });
+      }else{
+        this.studentForm.markAllAsTouched();
+      }
     }
 
     get nameControl() {
