@@ -15,7 +15,7 @@ export const onlyLettersValidator:ValidatorFn= (control:AbstractControl):Validat
         return null;
     }
     
-    const regex = /^[A-Za-z]+$/;
+    const regex = /^[a-zA-Z\s]+$/;
     if (!regex.test(cadena)){
         return{
             onlyLetters:true
