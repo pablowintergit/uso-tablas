@@ -24,8 +24,8 @@
         [class.is-invalid]="lastNameControl?.touched && lastNameControl?.invalid"
         >
         <div *ngIf="lastNameControl?.hasError('required')" class="invalid-feedback" >Debe ingresar el Apellido</div>
-        <div *ngIf="nameControl?.hasError('minLength')" class="invalid-feedback" >Debe ingresar mas de 3 caracteres</div>
-        <div *ngIf="nameControl?.hasError('onlyLetters')" class="invalid-feedback" >Debe ingresar solo letras</div>                  
+        <div *ngIf="lastNameControl?.hasError('minLength')" class="invalid-feedback" >Debe ingresar mas de 3 caracteres</div>
+        <div *ngIf="lastNameControl?.hasError('onlyLetters')" class="invalid-feedback" >Debe ingresar solo letras</div>                  
     </div>
     <div class="col-md-6">
         <label for="inputBirthDate" class="form-label">Fecha de Nacimiento</label>
