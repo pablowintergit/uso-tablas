@@ -1,4 +1,4 @@
-<div class="container justify-content-center w-25">
+<div class="container justify-content-center">
   <form [formGroup]="studentForm" (submit)="onSubmit()" class="row g-3 m-4">
     <div class="col-md-12">
       <label for="inputName" class="form-label">Nombre</label>
@@ -68,7 +68,7 @@
 
     <div class="col-12">
       <label for="inputAdress" class="form-label">Direccion</label>
-      <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" formControlName="adreess"
+      <input type="text" class="form-control" id="inputAddress" placeholder="Calle + Nro" formControlName="adreess"
         [class.is-valid]="adreessControl?.valid"
         [class.is-invalid]="adreessControl?.touched && adreessControl?.invalid" />
       <div *ngIf="adreessControl?.hasError('required'); else nextErrorAdress" class="invalid-feedback">
@@ -84,12 +84,16 @@
     <div class="col-md-6">
       <label for="inputPassword" class="form-label">Password</label>
       <input type="password" class="form-control" id="inputPassword" formControlName="password"
-        [class.is-valid]="passwordControl?.valid" [class.is-invalid]="
-          passwordControl?.touched && passwordControl?.invalid
-        " />
-      <div *ngIf="passwordControl?.hasError('required')" class="invalid-feedback">
+        [class.is-valid]="passwordControl?.valid" 
+        [class.is-invalid]="passwordControl?.touched && passwordControl?.invalid"/>
+      <div *ngIf="passwordControl?.hasError('required'); else nextErrorPassword" class="invalid-feedback">
         Debe ingresar la contraseña
       </div>
+      <ng-template #nextErrorPassword>
+        <div *ngIf="passwordControl?.hasError('minlength')" class="invalid-feedback">
+          Debe ingresar al menos 4 caracteres
+        </div>
+      </ng-template>
     </div>
 
     <div class="col-md-6">
@@ -106,7 +110,7 @@
         </div>
       </ng-template>
     </div>
-    <div class="col-12">
+    <div class="col-12 d-flex justify-content-end">
       <button type="submit" class="btn btn-primary">Guardar</button>
     </div>
   </form>

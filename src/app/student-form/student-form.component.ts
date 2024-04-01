@@ -29,7 +29,7 @@ export class StudentFormComponent {
         [Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}'),
         Validators.required]),
         adreess:this.formBuilder.control('',[Validators.required,minLengthValidator]),
-        password:this.formBuilder.control('',[Validators.required,Validators.minLength(2)]),
+        password:this.formBuilder.control('',[Validators.required,Validators.minLength(4)]),
         repeatPassword:this.formBuilder.control('',[Validators.required,passwordMatchValidator])
       });
     }
