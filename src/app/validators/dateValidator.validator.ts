@@ -6,10 +6,20 @@ import moment, { Moment } from "moment";
 y al menos sea 4 años menor a la actual. 
 */
 export const dateValidator:ValidatorFn= (control:AbstractControl):ValidationErrors | null =>{
-    if (control==null ||  !(control.value instanceof Date) ){
+    console.log("dateValidator");
+    
+    //📌El valor value de control aunque sea fecha viene como string idem javascript
+    if (control==null ||  typeof control.value!='string'){
         return null;
     }
-    
+
+    let mili=Date.parse(control.value);
+
+    //📌No es una fecha
+    if (isNaN(mili)){
+        return null;
+    }
+
     const errors:ValidationErrors={};
 
     const now= moment();
@@ -23,9 +33,11 @@ export const dateValidator:ValidatorFn= (control:AbstractControl):ValidationErro
 
     let diff:number=now.diff(dateToEval,"years");
 
-    if (diff>4){
+    if (diff<5){
         errors["yearsOverflow"]=true;   
     }
+
+    //console.log(errors);
 
     return Object.keys(errors).length !== 0 ? errors : null;
     

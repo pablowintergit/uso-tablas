@@ -37,7 +37,12 @@
         [class.is-valid]="birthDateControl?.valid"
         [class.is-invalid]="birthDateControl?.touched && birthDateControl?.invalid"
         >
-        <div *ngIf="birthDateControl?.hasError('required')" class="invalid-feedback" >Debe ingresar la fecha de nacimiento</div>        
+        <div *ngIf="birthDateControl?.hasError('required')" class="invalid-feedback" >Debe ingresar la fecha de nacimiento</div>
+        <div *ngIf="birthDateControl?.hasError('dateOverflow')" class="invalid-feedback" >La fecha de nacimiento no puede 
+          ser mayor a la actual</div>
+        <div *ngIf="birthDateControl?.hasError('yearsOverflow')" class="invalid-feedback" >
+          La fecha de nacimiento debe ser al menos 4 años menor a la actual
+        </div>
     </div>
 
     <div class="col-md-6">

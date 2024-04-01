@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { minLengthValidator } from '../validators/minLengthValidator.validator';
 import { onlyLettersValidator } from '../validators/onlyLettersValidator.validator';
+import { dateValidator } from '../validators/dateValidator.validator';
+
 
 
 
@@ -19,7 +21,7 @@ export class StudentFormComponent {
       this.studentForm=this.formBuilder.group({
         name:this.formBuilder.control('',[Validators.required,minLengthValidator,onlyLettersValidator]),
         lastName:this.formBuilder.control('',[Validators.required,onlyLettersValidator]),
-        birthDate:this.formBuilder.control('',[Validators.required]),
+        birthDate:this.formBuilder.control('',[Validators.required,dateValidator]),
         email:this.formBuilder.control('',
         [Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}'),
         Validators.required]),
