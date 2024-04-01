@@ -14,3 +14,14 @@ userForm:FormGroup=this.formBuilder.group({
 para eso tenemos que crear un getter que devuelva el componente usando userForm.get(nombreControl)
 De esta forma accederemos a las propiedades de este control como valid o invalid o touched
 De ahi podremos mostrar mensajes personalizados del error.
+
+Validators:
+1-Se puede agregar un validador al form group con la propiedad Validators
+ejemplo
+userForm= formBuilder.group({
+    name:...
+    lastName:...
+},{ validator: formGroupValidator "Form Group Validator" }); 
+
+Despues en la funcion 
+formGroupValidator:ValidatorFn=(control:FormGroup)...

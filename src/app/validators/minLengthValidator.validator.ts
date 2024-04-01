@@ -1,4 +1,4 @@
-import { AbstractControl, ValidationErrors, ValidatorFn } from "@angular/forms"
+import { AbstractControl, ValidationErrors, ValidatorFn, FormGroup, FormControl } from '@angular/forms';
 
 export const minLengthValidator:ValidatorFn= (control:AbstractControl):ValidationErrors | null =>{
     if (control==null){

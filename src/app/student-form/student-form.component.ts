@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { minLengthValidator } from '../validators/minLengthValidator.validator';
 import { onlyLettersValidator } from '../validators/onlyLettersValidator.validator';
 import { dateValidator } from '../validators/dateValidator.validator';
+import { passwordMatchValidator } from '../validators/passwordMatch.validator';
 
 
 
@@ -19,6 +20,8 @@ export class StudentFormComponent {
 
     constructor(private formBuilder:FormBuilder){
       this.studentForm=this.formBuilder.group({
+        //📌 minLengthValidator=> ya existe una funcion en angular que hace lo mismo mejor
+        //solo a fines ilustrativos ya que la actividad requeria de custom validators
         name:this.formBuilder.control('',[Validators.required,minLengthValidator,onlyLettersValidator]),
         lastName:this.formBuilder.control('',[Validators.required,minLengthValidator,onlyLettersValidator]),
         birthDate:this.formBuilder.control('',[Validators.required,dateValidator]),
@@ -26,8 +29,8 @@ export class StudentFormComponent {
         [Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}'),
         Validators.required]),
         adreess:this.formBuilder.control('',[Validators.required,minLengthValidator]),
-        password:this.formBuilder.control('',[Validators.required]),
-        repeatPassword:this.formBuilder.control('',[Validators.required])
+        password:this.formBuilder.control('',[Validators.required,Validators.minLength(2)]),
+        repeatPassword:this.formBuilder.control('',[Validators.required,passwordMatchValidator])
       });
     }
 
