@@ -36,9 +36,12 @@ export class StudentFormComponent {
 
     onSubmit():void{
       if (this.studentForm.valid){
+        //📌 Aca se guardarian en una entidad student
         Swal.fire({
           title:"El alumno se guardo con exito",
           icon:"success"
+        }).then(result=>{
+          this.studentForm.reset();
         });
       }else{
         this.studentForm.markAllAsTouched();

@@ -1,5 +1,5 @@
 <div class="container justify-content-center">
-  <form [formGroup]="studentForm" (submit)="onSubmit()" class="row g-3 m-4">
+  <form [formGroup]="studentForm" (ngSubmit)="onSubmit()" class="row g-3 m-4">
     <div class="col-md-12">
       <label for="inputName" class="form-label">Nombre</label>
       <input type="text" class="form-control" id="inputName" formControlName="name"
