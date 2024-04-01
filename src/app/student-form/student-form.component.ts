@@ -20,12 +20,12 @@ export class StudentFormComponent {
     constructor(private formBuilder:FormBuilder){
       this.studentForm=this.formBuilder.group({
         name:this.formBuilder.control('',[Validators.required,minLengthValidator,onlyLettersValidator]),
-        lastName:this.formBuilder.control('',[Validators.required,onlyLettersValidator]),
+        lastName:this.formBuilder.control('',[Validators.required,minLengthValidator,onlyLettersValidator]),
         birthDate:this.formBuilder.control('',[Validators.required,dateValidator]),
         email:this.formBuilder.control('',
         [Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}'),
         Validators.required]),
-        adreess:this.formBuilder.control('',[Validators.required]),
+        adreess:this.formBuilder.control('',[Validators.required,minLengthValidator]),
         password:this.formBuilder.control('',[Validators.required]),
         repeatPassword:this.formBuilder.control('',[Validators.required])
       });

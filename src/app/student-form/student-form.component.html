@@ -1,119 +1,107 @@
-<div class="container justify-content-center w-50">
+<div class="container justify-content-center w-25">
   <form [formGroup]="studentForm" (submit)="onSubmit()" class="row g-3 m-4">
-    <div class="col-md-6">
-        <label for="inputName" class="form-label">Nombre</label>
-        <input 
-        type="text" 
-        class="form-control" 
-        id="inputName"
-        formControlName="name"
-        [class.is-valid]="nameControl?.valid"
-        [class.is-invalid]="nameControl?.touched && nameControl?.invalid"
-        >
-        <div *ngIf="nameControl?.hasError('required')" class="invalid-feedback" >Debe ingresar el nombre</div>
-        <div *ngIf="nameControl?.hasError('minLength')" class="invalid-feedback" >Debe ingresar mas de 3 caracteres</div>
-        <div *ngIf="nameControl?.hasError('onlyLetters')" class="invalid-feedback" >Debe ingresar solo letras</div>         
-    </div>
-    <div class="col-md-6">
-        <label for="inputLastName" class="form-label">Apellido</label>
-        <input 
-        type="text" 
-        class="form-control" 
-        id="inputLastName"
-        formControlName="lastName"
-        [class.is-valid]="lastNameControl?.valid"
-        [class.is-invalid]="lastNameControl?.touched && lastNameControl?.invalid"
-        >
-        <div *ngIf="lastNameControl?.hasError('required')" class="invalid-feedback" >Debe ingresar el Apellido</div>
-        <div *ngIf="lastNameControl?.hasError('minLength')" class="invalid-feedback" >Debe ingresar mas de 3 caracteres</div>
-        <div *ngIf="lastNameControl?.hasError('onlyLetters')" class="invalid-feedback" >Debe ingresar solo letras</div>                  
-    </div>
-    <div class="col-md-6">
-        <label for="inputBirthDate" class="form-label">Fecha de Nacimiento</label>
-        <input 
-        type="date" 
-        class="form-control" 
-        id="inputBirthDate"
-        formControlName="birthDate"
-        [class.is-valid]="birthDateControl?.valid"
-        [class.is-invalid]="birthDateControl?.touched && birthDateControl?.invalid"
-        >
-        <div *ngIf="birthDateControl?.hasError('required')" class="invalid-feedback" >Debe ingresar la fecha de nacimiento</div>
-        <div *ngIf="birthDateControl?.hasError('dateOverflow')" class="invalid-feedback" >La fecha de nacimiento no puede 
-          ser mayor a la actual</div>
-        <div *ngIf="birthDateControl?.hasError('yearsOverflow')" class="invalid-feedback" >
-          La fecha de nacimiento debe ser al menos 4 años menor a la actual
+    <div class="col-md-12">
+      <label for="inputName" class="form-label">Nombre</label>
+      <input type="text" class="form-control" id="inputName" formControlName="name"
+        [class.is-valid]="nameControl?.valid" [class.is-invalid]="nameControl?.touched && nameControl?.invalid" />
+      <div *ngIf="nameControl?.hasError('required'); else otroError" class="invalid-feedback">
+        Debe ingresar el nombre
+      </div>
+      <ng-template #otroError>
+        <div *ngIf="nameControl?.hasError('onlyLetters'); else otroError2" class="invalid-feedback">
+          Debe ingresar solo letras
         </div>
+        <ng-template #otroError2>
+          <div *ngIf="nameControl?.hasError('minLength')" class="invalid-feedback">
+            Debe ingresar más de 3 caracteres
+          </div>
+        </ng-template>
+      </ng-template>
+    </div>
+    <div class="col-md-12">
+      <label for="inputLastName" class="form-label">Apellido</label>
+      <input type="text" class="form-control" id="inputLastName" formControlName="lastName"
+        [class.is-valid]="lastNameControl?.valid" [class.is-invalid]="
+          lastNameControl?.touched && lastNameControl?.invalid
+        " />
+      <div *ngIf="lastNameControl?.hasError('required'); else otroError" class="invalid-feedback">
+        Debe ingresar el nombre
+      </div>
+      <ng-template #otroError>
+        <div *ngIf="lastNameControl?.hasError('onlyLetters'); else otroError2" class="invalid-feedback">
+          Debe ingresar solo letras
+        </div>
+        <ng-template #otroError2>
+          <div *ngIf="lastNameControl?.hasError('minLength')" class="invalid-feedback">
+            Debe ingresar más de 3 caracteres
+          </div>
+        </ng-template>
+      </ng-template>
+    </div>
+    <div class="col-md-6">
+      <label for="inputBirthDate" class="form-label">Fecha de Nacimiento</label>
+      <input type="date" class="form-control" id="inputBirthDate" formControlName="birthDate"
+        [class.is-valid]="birthDateControl?.valid" [class.is-invalid]="
+          birthDateControl?.touched && birthDateControl?.invalid
+        " />
+      <div *ngIf="birthDateControl?.hasError('required'); else otroError" class="invalid-feedback">
+        Debe ingresar la fecha de nacimiento
+      </div>
+      <div *ngIf="birthDateControl?.hasError('dateOverflow')" class="invalid-feedback">
+        La fecha de nacimiento no puede ser mayor a la actual
+      </div>
+      <div *ngIf="birthDateControl?.hasError('yearsOverflow')" class="invalid-feedback">
+        La fecha de nacimiento debe ser al menos 4 años menor a la actual
+      </div>
+    </div>
+    <div class="col-md-12">
+      <label for="inputEmail" class="form-label">Email</label>
+      <input type="email" class="form-control" id="inputEmail" formControlName="email"
+        [class.is-valid]="emailControl?.valid" [class.is-invalid]="emailControl?.touched && emailControl?.invalid" />
+      <div *ngIf="emailControl?.hasError('required')" class="invalid-feedback">
+        Debe ingresar el mail
+      </div>
+      <div *ngIf="emailControl?.hasError('pattern')" class="invalid-feedback">
+        Mail Incorrecto
+      </div>
     </div>
 
-    <div class="col-md-6">
-      <label for="inputEmail" class="form-label">Email</label>
-      <input 
-      type="email" 
-      class="form-control" 
-      id="inputEmail"
-      formControlName="email"
-      [class.is-valid]="emailControl?.valid"
-      [class.is-invalid]="emailControl?.touched && emailControl?.invalid"
-      >
-      <div *ngIf="emailControl?.hasError('required')" class="invalid-feedback" >Debe ingresar el mail</div>
-      <div *ngIf="emailControl?.hasError('pattern')" class="invalid-feedback" >Mail Incorrecto</div>
-    </div>
-    
     <div class="col-12">
-        <label for="inputAdress" class="form-label">Direccion</label>
-        <input type="text" class="form-control" id="inputAddress" 
-        placeholder="1234 Main St"
-        formControlName="adreess"
+      <label for="inputAdress" class="form-label">Direccion</label>
+      <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" formControlName="adreess"
         [class.is-valid]="adreessControl?.valid"
-        [class.is-invalid]="adreessControl?.touched && adreessControl?.invalid"
-        >
-        <div *ngIf="adreessControl?.hasError('required')" class="invalid-feedback" >Debe ingresar la direccion</div>
-        <div *ngIf="nameControl?.hasError('minLength')" class="invalid-feedback" >Debe ingresar mas de 3 caracteres</div> 
+        [class.is-invalid]="adreessControl?.touched && adreessControl?.invalid" />
+      <div *ngIf="adreessControl?.hasError('required'); else otroError" class="invalid-feedback">
+        Debe ingresar la direccion
+      </div>
+      <ng-template #otroError>
+        <div *ngIf="nameControl?.hasError('minLength')" class="invalid-feedback">
+          Debe ingresar mas de 3 caracteres
+        </div>
+      </ng-template>
     </div>
 
     <div class="col-md-6">
       <label for="inputPassword" class="form-label">Password</label>
-      <input type="password" class="form-control" id="inputPassword"
-      formControlName="password"
-      [class.is-valid]="passwordControl?.valid"
-      [class.is-invalid]="passwordControl?.touched && passwordControl?.invalid"
-      >
-      <div *ngIf="passwordControl?.hasError('required')" class="invalid-feedback" >Debe ingresar la contraseña</div>
-  </div>
-    
-  <div class="col-md-6">
-      <label for="inputPasswordRepetir" class="form-label">Repetir Password</label>
-      <input type="password" class="form-control" id="inputPasswordRepetir"
-      formControlName="repeatPassword"
-      [class.is-valid]="repeatPasswordControl?.valid"
-      [class.is-invalid]="repeatPasswordControl?.touched && repeatPasswordControl?.invalid"
-      >
-      <div *ngIf="repeatPasswordControl?.hasError('required')" class="invalid-feedback" >Debe repetir la contraseña</div>
-  </div>
-<!--     <div class="col-md-6">
-      <label for="inputCity" class="form-label">City</label>
-      <input type="text" class="form-control" id="inputCity">
-    </div>
-    <div class="col-md-4">
-      <label for="inputState" class="form-label">State</label>
-      <select id="inputState" class="form-select">
-        <option selected>Choose...</option>
-        <option>...</option>
-      </select>
-    </div>
-    <div class="col-md-2">
-      <label for="inputZip" class="form-label">Zip</label>
-      <input type="text" class="form-control" id="inputZip">
-    </div>
-    <div class="col-12">
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="gridCheck">
-        <label class="form-check-label" for="gridCheck">
-          Check me out
-        </label>
+      <input type="password" class="form-control" id="inputPassword" formControlName="password"
+        [class.is-valid]="passwordControl?.valid" [class.is-invalid]="
+          passwordControl?.touched && passwordControl?.invalid
+        " />
+      <div *ngIf="passwordControl?.hasError('required')" class="invalid-feedback">
+        Debe ingresar la contraseña
       </div>
-    </div> -->
+    </div>
+
+    <div class="col-md-6">
+      <label for="inputPasswordRepetir" class="form-label">Repetir Password</label>
+      <input type="password" class="form-control" id="inputPasswordRepetir" formControlName="repeatPassword"
+        [class.is-valid]="repeatPasswordControl?.valid" [class.is-invalid]="
+          repeatPasswordControl?.touched && repeatPasswordControl?.invalid
+        " />
+      <div *ngIf="repeatPasswordControl?.hasError('required')" class="invalid-feedback">
+        Debe repetir la contraseña
+      </div>
+    </div>
     <div class="col-12">
       <button type="submit" class="btn btn-primary">Guardar</button>
     </div>
