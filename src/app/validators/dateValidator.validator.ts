@@ -37,7 +37,6 @@ export const dateValidator:ValidatorFn= (control:AbstractControl):ValidationErro
         errors["yearsOverflow"]=true;   
     }
 
-    //console.log(errors);
 
     return Object.keys(errors).length !== 0 ? errors : null;
     
